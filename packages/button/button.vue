@@ -1,8 +1,19 @@
 <template>
   <div>
     <button class="ui button" :class="cClass">
-      <i v-if="icon" class="user icon" :class="icon"></i>
-      <slot>我是一个按钮</slot>
+      <template v-if="animated">
+        <div v-if="$slots.hidden" class="hidden content">
+          <slot name="hidden" />
+        </div>
+        <div v-if="$slots.visible" class="visible content">
+          <slot name="visible" />
+        </div>
+      </template>
+      <!-- 不带动画效果 -->
+      <template v-else>
+        <i v-if="icon" class="user icon" :class="icon"></i>
+        <slot>我是一个按钮</slot>
+      </template>
     </button>
   </div>
 </template>
@@ -17,7 +28,16 @@ export default {
       required: false,
       default: 'small',
       validator (val) {
-        return ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive'].includes(val)
+        return [
+          'mini',
+          'tiny',
+          'small',
+          'medium',
+          'large',
+          'big',
+          'huge',
+          'massive'
+        ].includes(val)
       }
     },
     // 图标
@@ -34,6 +54,11 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    // 动画效果
+    animated: {
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -46,6 +71,7 @@ export default {
       // 1. 用数组收集类名
       var classArr = [this.size]
       // 收集到属性值，并分析一下
+      this.animated && classArr.push(`animated ${this.animated}`)
       this.loading && classArr.push('loading')
 
       this.disabled && classArr.push('disabled')
