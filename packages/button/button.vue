@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="ui button" :class="size">
+    <button class="ui button" :class="cClass">
       <i v-if="icon" class="user icon" :class="icon"></i>
       <slot>我是一个按钮</slot>
     </button>
@@ -22,6 +22,10 @@ export default {
     icon: {
       type: String,
       required: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -30,8 +34,12 @@ export default {
     }
   },
   computed: {
-    cSize () {
-      return this.size
+    cClass () {
+      if (this.disabled) {
+        return this.size + ' disabled'
+      } else {
+        return this.size
+      }
     }
   }
 }

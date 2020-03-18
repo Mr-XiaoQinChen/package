@@ -4,7 +4,7 @@
     <my-button>点个赞再走！</my-button>
     <br>
     <br>
-    <my-button size="mini">mini小按钮</my-button>
+    <my-button disabled size="mini">mini小按钮</my-button>
     <br>
     <br>
     <my-button icon="user" size="mini">mini小按钮</my-button>
