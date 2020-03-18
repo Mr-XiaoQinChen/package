@@ -13,7 +13,7 @@
     <my-button icon="bug" size="mini">mini小按钮</my-button>
     <br>
     <br>
-    <my-button size="huge">大按钮</my-button>
+    <my-button loading size="huge">大按钮</my-button>
     <br>
     <br>
     <my-button size="massive">大按钮</my-button>

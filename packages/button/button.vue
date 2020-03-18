@@ -11,6 +11,7 @@
 export default {
   name: 'MyButton',
   props: {
+    // 按钮大小
     size: {
       type: String,
       required: false,
@@ -19,11 +20,18 @@ export default {
         return ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive'].includes(val)
       }
     },
+    // 图标
     icon: {
       type: String,
       required: false
     },
+    // 禁用状态
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    // loading 加载状态
+    loading: {
       type: Boolean,
       default: false
     }
@@ -35,11 +43,14 @@ export default {
   },
   computed: {
     cClass () {
+      if (this.loading) {
+        return this.size + ' loading'
+      }
+      // 如果有禁用 就返回按钮的大小和禁用配置
       if (this.disabled) {
         return this.size + ' disabled'
-      } else {
-        return this.size
       }
+      return this.size
     }
   }
 }
