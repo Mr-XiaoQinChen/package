@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="ui button" :class="cClass">
+    <button class="ui button" :class="cClass" @click="hEmitClick">
       <template v-if="animated">
         <div v-if="$slots.hidden" class="hidden content">
           <slot name="hidden" />
@@ -98,6 +98,11 @@ export default {
     //   // }
     //   // return this.size
     // }
+  },
+  methods: {
+    hEmitClick () {
+      this.$emit('click')
+    }
   }
 }
 </script>

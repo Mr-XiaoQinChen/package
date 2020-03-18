@@ -30,9 +30,20 @@
     <my-button size="massive">大按钮</my-button>
     <br />
     <br />
-    <my-button icon="wifi" size="massive">信号满格</my-button>
+    <!-- @click.native="btnClick" 是原生标签的事件 -->
+    <my-button @click="btnClick"  icon="wifi" size="massive">我可以点击哦！</my-button>
     <br />
     <br />
 
   </div>
 </template>
+<script>
+export default {
+  name: 'page-button',
+  methods: {
+    btnClick () {
+      alert('别点我')
+    }
+  }
+}
+</script>
