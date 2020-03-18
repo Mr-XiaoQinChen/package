@@ -43,15 +43,35 @@ export default {
   },
   computed: {
     cClass () {
-      if (this.loading) {
-        return this.size + ' loading'
-      }
-      // 如果有禁用 就返回按钮的大小和禁用配置
-      if (this.disabled) {
-        return this.size + ' disabled'
-      }
-      return this.size
+      // 1. 用数组收集类名
+      var classArr = [this.size]
+      // 收集到属性值，并分析一下
+      this.loading && classArr.push('loading')
+
+      this.disabled && classArr.push('disabled')
+
+      return classArr.join(' ')
     }
+    // cClass () {
+    //   // 1. 用数组收集类名
+    //   var classArr = [this.size]
+    //   // 收集到属性值，并分析一下
+    //   if (this.loading) {
+    //     classArr.push('loading')
+    //   }
+    //   if (this.disabled) {
+    //     classArr.push('disabled')
+    //   }
+    //   return classArr.join(' ')
+    //   // if (this.loading) {
+    //   //   return this.size + ' loading'
+    //   // }
+    //   // // 如果有禁用 就返回按钮的大小和禁用配置
+    //   // if (this.disabled) {
+    //   //   return this.size + ' disabled'
+    //   // }
+    //   // return this.size
+    // }
   }
 }
 </script>
