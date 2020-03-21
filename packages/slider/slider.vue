@@ -54,8 +54,16 @@ export default {
       currentIdx: this.curIdx
     }
   },
+  // 自动播放
+  created () {
+    if (this.auto) {
+      this.timer = setInterval(() => {
+        this.hNext()
+      }, this.auto)
+    }
+  },
   methods: {
-    // 右击
+    // 左击
     hPrev () {
       // 切换上一张
       this.currentIdx = this.currentIdx - 1
@@ -64,7 +72,7 @@ export default {
         this.currentIdx = this.list.length - 1
       }
     },
-    // 左击
+    // 右击
     hNext () {
       // 切换下一张
       // 本质就是修改  当前显示图片 的索引值（下标）
