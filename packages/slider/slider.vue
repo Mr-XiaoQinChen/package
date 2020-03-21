@@ -1,20 +1,20 @@
 <template>
   <div class="slider">
     <div class="slider-content">
-      <div class="slider-item" v-show="idx===curIdx" v-for="(item,idx) in list" :key="idx">
+      <div class="slider-item" v-show="idx===currentIdx" v-for="(item,idx) in list" :key="idx">
         <img :src="item.url" :alt="item.alt" />
       </div>
     </div>
 
     <!-- 左右按钮 -->
-    <span class="btn btn_left"></span>
-    <span class="btn btn_right"></span>
+    <span class="btn btn_left" @click="hPrev"></span>
+    <span class="btn btn_right" @click="hNext"></span>
 
     <!-- 标题区域 -->
-    <div class="txt">{{this.list[curIdx].alt}}</div>
+    <div class="txt">{{this.list[currentIdx].alt}}</div>
     <!-- 指示条 -->
     <ol class="indirector">
-       <li v-for="(item,idx) in list" :key="idx" :class="{current:idx===curIdx}"></li>
+       <li v-for="(item,idx) in list" :key="idx" :class="{current:idx===currentIdx}"></li>
     </ol>
   </div>
 </template>
@@ -45,6 +45,37 @@ export default {
       type: Number,
       default: 0, // 默认不开启自动播放
       required: false
+    }
+  },
+  data () {
+    return {
+      // 自定义数据项来接收curIdx属性。
+      // 因为在组件内部，不允许改props值的
+      currentIdx: this.curIdx
+    }
+  },
+  methods: {
+    // 右击
+    hPrev () {
+      // 切换上一张
+      this.currentIdx = this.currentIdx - 1
+      // 防止越界
+      if (this.currentIdx === -1) {
+        this.currentIdx = this.list.length - 1
+      }
+    },
+    // 左击
+    hNext () {
+      // 切换下一张
+      // 本质就是修改  当前显示图片 的索引值（下标）
+      // console.log(this.currentIdx)
+      this.currentIdx = this.currentIdx + 1
+
+      // 防止越界
+      if (this.currentIdx === this.list.length) {
+        this.currentIdx = 0
+      }
+      // console.log(this.currentIdx)
     }
   }
 }
