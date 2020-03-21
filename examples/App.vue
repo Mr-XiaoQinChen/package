@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/pagebutton">测试按钮</router-link> |
-      <router-link to="/pageDivider">测试分隔条</router-link>
+      <router-link to="/pageDivider">测试分隔条</router-link> |
+      <router-link to="/pageSlider">测试轮播图</router-link> |
     </div>
     <router-view/>
   </div>
