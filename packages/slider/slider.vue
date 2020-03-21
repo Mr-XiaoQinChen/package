@@ -1,9 +1,11 @@
 <template>
   <div class="slider" @click="hClick" @mouseenter="hMouseEnter" @mouseleave="hMouseLeave">
     <div class="slider-content">
-      <div class="slider-item" v-show="idx===currentIdx" v-for="(item,idx) in list" :key="idx">
-        <img :src="item.url" :alt="item.alt" />
-      </div>
+      <transition-group name="fade">
+        <div class="slider-item" v-show="idx===currentIdx" v-for="(item,idx) in list" :key="item.url">
+          <img :src="item.url" :alt="item.alt" />
+        </div>
+      </transition-group>
     </div>
 
     <!-- 左右按钮 -->
@@ -14,7 +16,12 @@
     <div class="txt">{{this.list[currentIdx].alt}}</div>
     <!-- 指示条 -->
     <ol class="indirector">
-       <li @mouseenter="currentIdx=idx" v-for="(item,idx) in list" :key="idx" :class="{current:idx===currentIdx}"></li>
+      <li
+        @mouseenter="currentIdx=idx"
+        v-for="(item,idx) in list"
+        :key="idx"
+        :class="{current:idx===currentIdx}"
+      ></li>
     </ol>
   </div>
 </template>
@@ -110,6 +117,16 @@ export default {
 }
 </script>
 <style>
+/* 添加动画效果 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .slider .slider-content,
 .slider img {
   width: 100%;
