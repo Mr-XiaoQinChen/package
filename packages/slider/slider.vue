@@ -1,5 +1,5 @@
 <template>
-  <div class="slider" @mouseenter="hMouseEnter" @mouseleave="hMouseLeave">
+  <div class="slider" @click="hClick" @mouseenter="hMouseEnter" @mouseleave="hMouseLeave">
     <div class="slider-content">
       <div class="slider-item" v-show="idx===currentIdx" v-for="(item,idx) in list" :key="idx">
         <img :src="item.url" :alt="item.alt" />
@@ -61,6 +61,10 @@ export default {
     this.move()
   },
   methods: {
+    hClick () {
+      // 向父级抛出事件，事件名是click,参数是this.currentIdx
+      this.$emit('click', this.currentIdx)
+    },
     // 封装 自动播放
     move () {
       if (this.auto) {
@@ -112,6 +116,7 @@ export default {
   height: 100%;
 }
 .slider {
+  cursor: pointer;
   margin: 0 auto;
   border: 1px solid #ccc;
   position: relative;

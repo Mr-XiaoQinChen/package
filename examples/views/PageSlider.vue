@@ -4,7 +4,9 @@
     <my-slider style="width:250px;height:350px;"
     :auto="2000"
     :curIdx="curIdx"
-    :list="list"></my-slider>
+    :list="list"
+    @click="hClick"
+    ></my-slider>
   </div>
 </template>
 
@@ -24,6 +26,13 @@ export default {
         { url: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584438531340&di=0c69fbc0d55171aa8a1d2d107c3f7c87&imgtype=0&src=http%3A%2F%2Fimg21.mtime.cn%2Fpi%2F2011%2F01%2F12%2F134106.88324738_1000X1000.jpg', alt: '6.忠犬八公' },
         { url: 'http://pic5.997788.com/pic_search/00/17/34/94/se17349411.jpg', alt: '7.英雄本色' }
       ]
+    }
+  },
+  methods: {
+    hClick (idx) {
+      console.log('子组件slider中，第' + idx + '被点了')
+      // 后续做什么，自行决定....
+      // this.$router.push(/....)
     }
   }
 }
