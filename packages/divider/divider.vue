@@ -1,13 +1,19 @@
 <template>
   <div class="ui divider horizontal header">
-    <i class="user icon"></i>
+    <i v-if="icon" class="icon" :class="icon"></i>
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    icon: {
+      type: String,
+      default: '',
+      required: false
+    }
+  }
 }
 
 </script>
