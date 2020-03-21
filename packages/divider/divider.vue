@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: 'MyDivider',
   props: {
     icon: {
       type: String,

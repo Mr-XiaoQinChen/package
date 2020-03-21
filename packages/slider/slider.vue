@@ -1,12 +1,8 @@
 <template>
   <div class="slider">
     <div class="slider-content">
-      <div class="slider-item">
-        <img src="./img/4.这个杀手不太冷.jpg" alt />
-      </div>
-
-      <div class="slider-item">
-        <img src="./img/5.WALL_E.jpg" alt />
+      <div class="slider-item" v-show="idx===curIdx" v-for="(item,idx) in list" :key="idx">
+        <img :src="item.url" :alt="item.alt" />
       </div>
     </div>
 
@@ -15,19 +11,42 @@
     <span class="btn btn_right"></span>
 
     <!-- 标题区域 -->
-    <div class="txt">标题</div>
+    <div class="txt">{{this.list[curIdx].alt}}</div>
     <!-- 指示条 -->
     <ol class="indirector">
-      <li></li>
-
-      <li class="current"></li>
-      <li></li>
+       <li v-for="(item,idx) in list" :key="idx" :class="{current:idx===curIdx}"></li>
     </ol>
   </div>
 </template>
 <script>
 export default {
-  name: 'MySlider'
+  name: 'MySlider',
+  // data () {
+  //   return {
+  //     // 自定义数据项来接收curIdx属性。
+  //     // 因为在组件内部，不允许改props值的
+  //     currentIdx: this.curIdx
+  //   }
+  // },
+  props: {
+    // 轮播列表
+    list: {
+      type: Array,
+      required: true
+    },
+    // 当前开始播放是哪一张图
+    curIdx: {
+      type: Number,
+      default: 0,
+      required: false
+    },
+    // 自动播放的毫秒数
+    auto: {
+      type: Number,
+      default: 0, // 默认不开启自动播放
+      required: false
+    }
+  }
 }
 </script>
 <style>
