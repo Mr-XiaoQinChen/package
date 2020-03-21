@@ -14,6 +14,7 @@ export default {
   data () {
     return {
       curIdx: 0,
+
       list: [
         { url: require('./img/1.The Shawshank Redemption.jpg'), alt: '1.肖申克的救赎' },
         { url: require('./img/2.Forrest Gump.jpg'), alt: '2.阿甘正传' },
