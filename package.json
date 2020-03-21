@@ -1,11 +1,13 @@
 {
-  "name": "project",
-  "version": "0.1.0",
-  "private": true,
+  "name": "light-ui-program",
+  "version": "0.0.2",
+  "private": false,
+  "main": "lib/light-ui-program.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "b": "vue-cli-service build --target lib --name light-ui-program --dest lib ./packages/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.4",
