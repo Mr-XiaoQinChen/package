@@ -1,5 +1,5 @@
 <template>
-  <div class="slider">
+  <div class="slider" @mouseenter="hMouseEnter" @mouseleave="hMouseLeave">
     <div class="slider-content">
       <div class="slider-item" v-show="idx===currentIdx" v-for="(item,idx) in list" :key="idx">
         <img :src="item.url" :alt="item.alt" />
@@ -14,7 +14,7 @@
     <div class="txt">{{this.list[currentIdx].alt}}</div>
     <!-- 指示条 -->
     <ol class="indirector">
-       <li v-for="(item,idx) in list" :key="idx" :class="{current:idx===currentIdx}"></li>
+       <li @mouseenter="currentIdx=idx" v-for="(item,idx) in list" :key="idx" :class="{current:idx===currentIdx}"></li>
     </ol>
   </div>
 </template>
@@ -51,18 +51,35 @@ export default {
     return {
       // 自定义数据项来接收curIdx属性。
       // 因为在组件内部，不允许改props值的
-      currentIdx: this.curIdx
+      currentIdx: this.curIdx,
+      timer: null
     }
   },
   // 自动播放
   created () {
-    if (this.auto) {
-      this.timer = setInterval(() => {
-        this.hNext()
-      }, this.auto)
-    }
+    // 调用自动播放
+    this.move()
   },
   methods: {
+    // 封装 自动播放
+    move () {
+      if (this.auto) {
+        this.timer = setInterval(() => {
+          this.hNext()
+        }, this.auto)
+      }
+    },
+    // 鼠标进入
+    hMouseEnter () {
+      // console.log('hMouseEnter....')
+      clearInterval(this.timer)
+    },
+    // 鼠标离开
+    hMouseLeave () {
+      // console.log('hMouseLeave....')
+      // clearInterval(this.timer)
+      this.move()
+    },
     // 左击
     hPrev () {
       // 切换上一张
