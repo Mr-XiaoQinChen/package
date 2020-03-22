@@ -7,6 +7,13 @@
         子标题子标题子标题子标题
       </div>
     </my-headline>
+    <br>
+    <my-headline :level="2" icon="settings" size="small">
+      <div slot="sub">
+        123456
+      </div>
+    </my-headline>
+    <br>
   </div>
 </template>
 
